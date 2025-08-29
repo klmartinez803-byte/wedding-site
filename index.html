@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kenneth & Jennifer — 02.14.2026</title>
+  <meta name="description" content="Kenneth & Jennifer's wedding in West Palm Beach, Florida." />
+  <meta property="og:title" content="Kenneth & Jennifer — 02.14.2026" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="Celebrate with us in West Palm Beach, Florida." />
+  <meta property="og:image" content="assets/images/photo2.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Home">Kenneth & Jennifer</a>
+      <nav>
+        <a href="#photos">Photos</a>
+        <a href="#details">Details</a>
+        <a href="#rsvp" class="btn">RSVP</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero" role="img" aria-label="Couple photos">
+      <div class="hero-overlay"></div>
+      <div class="hero-content container">
+        <h1>Kenneth &amp; Jennifer</h1>
+        <p class="subtitle">Valentine’s Day 2026 • West Palm Beach, Florida</p>
+        <a class="btn btn-light" href="#rsvp">RSVP</a>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="photos" class="section container">
+      <h2>Our Photos</h2>
+      <p class="lede">A few favorites from our engagement shoot.</p>
+      <div class="gallery">
+        <a href="#img1" class="card">
+          <img src="assets/images/photo1.jpg" alt="Engagement photo 1" loading="lazy" />
+        </a>
+        <a href="#img2" class="card card--large">
+          <img src="assets/images/photo2.jpg" alt="Engagement photo 2" loading="lazy" />
+        </a>
+        <a href="#img3" class="card">
+          <img src="assets/images/photo3.jpg" alt="Engagement photo 3" loading="lazy" />
+        </a>
+      </div>
+
+      <div id="img1" class="lightbox">
+        <a href="#photos" class="lightbox__close" aria-label="Close"></a>
+        <img src="assets/images/photo1.jpg" alt="Photo 1 enlarged" />
+      </div>
+      <div id="img2" class="lightbox">
+        <a href="#photos" class="lightbox__close" aria-label="Close"></a>
+        <img src="assets/images/photo2.jpg" alt="Photo 2 enlarged" />
+      </div>
+      <div id="img3" class="lightbox">
+        <a href="#photos" class="lightbox__close" aria-label="Close"></a>
+        <img src="assets/images/photo3.jpg" alt="Photo 3 enlarged" />
+      </div>
+    </section>
+
+    <!-- DETAILS -->
+    <section id="details" class="section container">
+      <h2>Details</h2>
+      <div class="details-grid">
+        <div class="detail">
+          <h3>Ceremony</h3>
+          <p>
+            <strong>St. Patrick Catholic Church</strong><br/>
+            13591 Prosperity Farms Rd, Palm Beach Gardens, FL 33410<br/>
+            <a href="https://www.google.com/maps?q=13591+Prosperity+Farms+Rd,+Palm+Beach+Gardens,+FL+33410" target="_blank" rel="noopener">Open in Google Maps</a><br/>
+            Time: 4:00 PM
+          </p>
+        </div>
+        <div class="detail">
+          <h3>Reception</h3>
+          <p>
+            <strong>Breakers West Country Club</strong><br/>
+            1550 Flagler Parkway, West Palm Beach, FL 33411<br/>
+            <a href="https://www.google.com/maps?q=1550+Flagler+Parkway,+West+Palm+Beach,+FL+33411" target="_blank" rel="noopener">Open in Google Maps</a><br/>
+            Starts at 5:00 PM
+          </p>
+        </div>
+        <div class="detail">
+          <h3>Dress Code</h3>
+          <p>Black tie optional.</p>
+        </div>
+        <div class="detail">
+          <h3>Gifts</h3>
+          <p>
+            Your presence is the greatest gift. If you wish to honor us with a gift,
+            we would be grateful for a contribution toward our honeymoon fund.
+            <em>No boxed gifts, please.</em>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- RSVP -->
+    <section id="rsvp" class="section container rsvp">
+      <h2>RSVP</h2>
+      <p class="lede">Kindly let us know if you can join us.</p>
+      <a class="btn" href="mailto:you@example.com?subject=Wedding%20RSVP%20-%20Kenneth%20%26%20Jennifer">RSVP via Email</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Kenneth &amp; Jennifer</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
