@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Our Wedding</title>
+  <meta name="description" content="A simple, elegant wedding website." />
+  <meta property="og:title" content="Our Wedding" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="Join us for our celebration." />
+  <meta property="og:image" content="assets/images/photo2.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Home">Our Wedding</a>
+      <nav>
+        <a href="#photos">Photos</a>
+        <a href="#details">Details</a>
+        <a href="#rsvp" class="btn">RSVP</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero" role="img" aria-label="Couple photos">
+      <div class="hero-overlay"></div>
+      <div class="hero-content container">
+        <h1 contenteditable="true" spellcheck="false">Your Names Here</h1>
+        <p class="subtitle" contenteditable="true" spellcheck="false">Wedding Date • City, State</p>
+        <a class="btn btn-light" href="#rsvp">RSVP</a>
+      </div>
+    </section>
+
+    <!-- GALLERY (centered around the three photos) -->
+    <section id="photos" class="section container">
+      <h2>Our Photos</h2>
+      <p class="lede">A few favorites from our engagement shoot.</p>
+      <div class="gallery">
+        <a href="#img1" class="card">
+          <img src="assets/images/photo1.jpg" alt="Photo 1" loading="lazy" />
+        </a>
+        <a href="#img2" class="card card--large">
+          <img src="assets/images/photo2.jpg" alt="Photo 2" loading="lazy" />
+        </a>
+        <a href="#img3" class="card">
+          <img src="assets/images/photo3.jpg" alt="Photo 3" loading="lazy" />
+        </a>
+      </div>
+
+      <!-- Lightweight CSS lightbox using :target -->
+      <div id="img1" class="lightbox">
+        <a href="#photos" class="lightbox__close" aria-label="Close"></a>
+        <img src="assets/images/photo1.jpg" alt="Photo 1 enlarged" />
+      </div>
+      <div id="img2" class="lightbox">
+        <a href="#photos" class="lightbox__close" aria-label="Close"></a>
+        <img src="assets/images/photo2.jpg" alt="Photo 2 enlarged" />
+      </div>
+      <div id="img3" class="lightbox">
+        <a href="#photos" class="lightbox__close" aria-label="Close"></a>
+        <img src="assets/images/photo3.jpg" alt="Photo 3 enlarged" />
+      </div>
+    </section>
+
+    <!-- DETAILS -->
+    <section id="details" class="section container">
+      <h2>Details</h2>
+      <div class="details-grid">
+        <div class="detail">
+          <h3>Ceremony</h3>
+          <p contenteditable="true" spellcheck="false">
+            Venue name<br/>
+            Address line 1<br/>
+            Time: 4:00 PM
+          </p>
+        </div>
+        <div class="detail">
+          <h3>Reception</h3>
+          <p contenteditable="true" spellcheck="false">
+            Venue name<br/>
+            Address line 1<br/>
+            Time: 6:00 PM
+          </p>
+        </div>
+        <div class="detail">
+          <h3>Dress Code</h3>
+          <p contenteditable="true" spellcheck="false">Cocktail attire</p>
+        </div>
+        <div class="detail">
+          <h3>Registry</h3>
+          <p contenteditable="true" spellcheck="false">Add your registry links here.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- RSVP -->
+    <section id="rsvp" class="section container rsvp">
+      <h2>RSVP</h2>
+      <p class="lede">Kindly let us know if you can join us.</p>
+      <!-- Replace the mailto with your email or paste a Google Form link -->
+      <a class="btn" href="mailto:you@example.com?subject=Wedding%20RSVP">RSVP via Email</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Our Wedding</p>
+    </div>
+  </footer>
+
+  <script>
+    // Auto-year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
