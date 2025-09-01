@@ -1,611 +1,69 @@
 <!DOCTYPE html>
-<html lang="en" id="top">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kenneth & Jennifer — 02.14.2026</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Lato:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --cotton:#F8F5F2; --sage:#A3B7A2; --pine:#4A5A40; --latte:#CBB89D; --neutral:#3E3E3E;
-    }
-    html { scroll-behavior: smooth; }
-    * { box-sizing: border-box; }
-    body {
-      margin:0; color:var(--neutral); background:var(--cotton);
-      font-family:'Lato',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      background-image:url('assets/images/linen-texture.png');
-      background-size: 600px 600px;
-    }
-    header.site-header {
-      position: sticky; top:0; z-index:1000;
-      background:rgba(74,90,64,.92); /* pine */
-      backdrop-filter:saturate(140%) blur(6px);
-      border-bottom: 1px solid rgba(0,0,0,.08);
-    }
-    .nav-wrap { max-width:1100px; margin:0 auto; padding:12px 16px; display:flex; align-items:center; gap:16px; }
-    .brand { color: #fff; text-decoration:none; font-weight:700; letter-spacing:.3px; }
-    .spacer { flex:1; }
-    nav a { color:#fff; text-decoration:none; font-weight:600; margin-left:16px; padding:8px 10px; border-radius:8px; }
-    nav a:hover, nav a:focus { background: rgba(255,255,255,.12); outline:none; }
-    .hero {
-      position:relative; min-height:72vh; display:grid; place-items:center; text-align:center; color:#fff;
-      background: url('assets/images/gallery5.jpg') center/cover no-repeat;
-    }
-    .hero::before {
-      content:""; position:absolute; inset:0;
-      background: linear-gradient(180deg, rgba(74,90,64,.55), rgba(203,184,157,.35));
-    }
-    .hero > .inner { position:relative; padding:64px 16px; }
-    h1.title { font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,6vw,3.2rem); margin:0 0 6px; }
-    .subtitle { margin:0; opacity:.95; }
-    .countdown { margin-top:14px; font-weight:700; }
-    .container { max-width:1100px; margin:0 auto; padding:0 16px; }
-    section.section { padding:56px 0; scroll-margin-top:90px; }
-    section.section h2 { font-family:'Cormorant Garamond',serif; color:var(--pine); margin:0 0 12px; font-size:clamp(1.6rem,3vw,2rem);}
-    .floral { background:url('assets/images/floral-divider.png') center/contain no-repeat; height:40px; margin:28px auto; width:220px; opacity:.85; }
-    /* Fade-in on scroll */
-    .section { opacity:0; transform:translateY(16px); transition: all .8s ease; }
-    .section.visible { opacity:1; transform:none; }
-    /* Details grid */
-    .details { display:grid; gap:20px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
-    .card { background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:16px; padding:16px; box-shadow:0 8px 24px rgba(0,0,0,.06); }
-    .card h3 { margin:0 0 6px; color:var(--sage); }
-    .btn { display:inline-block; background:var(--pine); color:#fff; text-decoration:none; padding:10px 14px; border-radius:10px; }
-    .btn:hover { filter:brightness(.96); }
-    /* Timeline */
-    .timeline { position:relative; border-left:3px solid var(--sage); margin:0; padding-left:22px; }
-    .timeline .event { position:relative; margin:18px 0; }
-    .timeline .event::before { content:""; position:absolute; left:-11px; top:.2em; width:14px; height:14px; border-radius:50%; background:var(--sage); border:3px solid #fff; }
-    .timeline h4 { margin:0; color:var(--pine);}
-    /* Gallery */
-    .gallery { display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); }
-    .gallery img { width:100%; height:260px; object-fit:cover; border-radius:14px; box-shadow:0 8px 18px rgba(0,0,0,.08);}
-    /* RSVP form */
-    form.rsvp { display:grid; gap:12px; grid-template-columns:1fr 1fr; }
-    form.rsvp label { font-weight:600; }
-    form.rsvp input, form.rsvp select, form.rsvp textarea { grid-column:span 2; padding:10px 12px; border:1px solid #d7d3cc; border-radius:10px; background:#fff; }
-    form.rsvp button { grid-column:span 2; }
-    footer { background:var(--pine); color:#fff; padding:18px 0; margin-top:40px; }
-
-    /* Mobile Navigation */
-    .hamburger {
-      display: none;
-      width: 40px;
-      height: 34px;
-      border: none;
-      background: transparent;
-      position: relative;
-      cursor: pointer;
-      margin-right: 8px;
-    }
-    .hamburger span {
-      position: absolute;
-      left: 6px; right: 6px;
-      height: 3px; background: #fff; border-radius: 3px;
-      transition: transform .3s ease, opacity .3s ease, top .3s ease;
-    }
-    .hamburger span:nth-child(1) { top: 8px; }
-    .hamburger span:nth-child(2) { top: 16px; }
-    .hamburger span:nth-child(3) { top: 24px; }
-
-    .hamburger.open span:nth-child(1) { top: 16px; transform: rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { top: 16px; transform: rotate(-45deg); }
-
-    @media (max-width: 900px) {
-      .hamburger { display: inline-block; }
-      nav[aria-label="Primary"], nav#primary-nav {
-        position: absolute;
-        top: 60px; right: 12px; left: 12px;
-        background: rgba(74,90,64,.98);
-        border: 1px solid rgba(255,255,255,.15);
-        border-radius: 12px;
-        padding: 10px;
-        display: none;
-        box-shadow: 0 16px 30px rgba(0,0,0,.25);
-      }
-      nav[aria-label="Primary"].open, nav#primary-nav.open { display: block; }
-      nav a { display: block; margin: 8px 0; padding: 10px 12px; }
-      .nav-wrap { position: relative; }
-    }
-
-    /* Elaborate Vertical Timeline */
-    .vtimeline {
-      position: relative;
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 20px 0 10px;
-    }
-    .vtimeline::before {
-      content: "";
-      position: absolute;
-      top: 0; bottom: 0;
-      left: 50%;
-      width: 4px;
-      background: linear-gradient(var(--sage), var(--latte));
-      transform: translateX(-50%);
-      border-radius: 4px;
-      opacity: .9;
-    }
-    .vtimeline-item {
-      position: relative;
-      width: 50%;
-      padding: 14px 24px 14px 24px;
-    }
-    .vtimeline-item .badge {
-      display: inline-block;
-      background: #fff;
-      color: var(--pine);
-      border: 2px solid var(--sage);
-      border-radius: 999px;
-      padding: 6px 12px;
-      font-weight: 700;
-      font-size: .9rem;
-      letter-spacing: .2px;
-      box-shadow: 0 6px 16px rgba(0,0,0,.08);
-    }
-    .vtimeline-item .dot {
-      position: absolute;
-      top: 20px;
-      width: 18px; height: 18px;
-      background: var(--sage);
-      border: 3px solid #fff;
-      border-radius: 50%;
-      z-index: 2;
-      box-shadow: 0 4px 10px rgba(0,0,0,.12);
-    }
-    .vtimeline-item.left { left: 0; text-align: right; }
-    .vtimeline-item.left .dot { right: -9px; }
-    .vtimeline-item.right { left: 50%; }
-    .vtimeline-item.right .dot { left: -9px; }
-    .vtimeline-card {
-      display: inline-block;
-      background: #fff;
-      border: 1px solid rgba(0,0,0,.06);
-      border-radius: 14px;
-      padding: 16px 18px;
-      margin-top: 8px;
-      text-align: left;
-      box-shadow: 0 10px 30px rgba(0,0,0,.08);
-      max-width: 420px;
-    }
-    .vtimeline-card h4 { margin: 0 0 6px; color: var(--pine); }
-    .vtimeline-card p { margin: 0; }
-    .vtimeline-card .meta { color: #6b7280; font-size: .9rem; margin-bottom: 6px; }
-    .vtimeline-card .actions a {
-      display: inline-block;
-      margin-top: 8px;
-      font-weight: 600;
-      color: #fff;
-      background: var(--pine);
-      text-decoration: none;
-      padding: 8px 10px;
-      border-radius: 10px;
-    }
-    /* Reveal animation for items */
-    .vtimeline-item { opacity: 0; transform: translateY(18px); transition: all .8s ease; }
-    .vtimeline-item.seen { opacity: 1; transform: none; }
-    /* Responsive: stack vertically on small screens */
-    @media (max-width: 900px) {
-      .vtimeline::before { left: 22px; transform: none; }
-      .vtimeline-item, .vtimeline-item.left, .vtimeline-item.right { width: 100%; left: 0; text-align: left; padding-left: 56px; }
-      .vtimeline-item .dot { left: 14px; right: auto; }
-      .vtimeline-card { max-width: 100%; }
-    }
-
-  
-    /* One-sided clean vertical timeline */
-    .timeline-one {
-      position: relative;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 6px 0 10px 28px; /* space for spine */
-      border-left: 3px solid var(--sage);
-    }
-    .timeline-one .day {
-      font-family: 'Cormorant Garamond', serif;
-      color: var(--pine);
-      margin: 28px 0 12px;
-      text-align: left;
-      font-size: clamp(1.1rem, 2.4vw, 1.35rem);
-    }
-    .timeline-one .item {
-      position: relative;
-      margin: 14px 0 20px 0;
-      opacity: 0;
-      transform: translateY(14px);
-      transition: all .6s ease;
-    }
-    .timeline-one .item.seen {
-      opacity: 1;
-      transform: none;
-    }
-    .timeline-one .dot {
-      position: absolute;
-      left: -10px;
-      top: 6px;
-      width: 16px;
-      height: 16px;
-      background: var(--sage);
-      border: 3px solid #fff;
-      border-radius: 50%;
-      box-shadow: 0 4px 10px rgba(0,0,0,.12);
-    }
-    .timeline-one .time {
-      color: #6b7280;
-      font-weight: 700;
-      margin-left: 4px;
-      margin-bottom: 6px;
-      font-size: .95rem;
-    }
-    .timeline-one .card {
-      background: #fff;
-      border: 1px solid rgba(0,0,0,.06);
-      border-radius: 14px;
-      padding: 14px 16px;
-      box-shadow: 0 10px 24px rgba(0,0,0,.06);
-    }
-    .timeline-one .card h4 {
-      margin: 0 0 6px;
-      color: var(--pine);
-    }
-    .timeline-one .card .meta {
-      margin: 0;
-      color: #374151;
-    }
-    @media (max-width: 700px) {
-      .timeline-one { padding-left: 24px; }
-      .timeline-one .dot { left: -11px; }
-    }
-
-  
-    /* Our Story section */
-    #story.section {
-  background-image:
-    linear-gradient(135deg, var(--sage) 0%, var(--latte) 100%),
-    url('assets/images/floral-watercolor.png');
-  background-size: cover, 600px 600px;
-  background-repeat: no-repeat, repeat;
-  background-position: center, top left;
-  background-blend-mode: overlay, soft-light;
-  color: #fff;
-  padding: 70px 20px;
-}
-    .story-wrap {
-      display: grid;
-      grid-template-columns: 1.6fr 1fr;
-      gap: 22px;
-      align-items: start;
-    }
-    .story-text p { line-height: 1.75; margin: 0 0 14px; }
-    .story-photos {
-      display: grid;
-      gap: 12px;
-    }
-    .story-photos img {
-      width: 100%;
-      border-radius: 14px;
-      box-shadow: 0 10px 24px rgba(0,0,0,.08);
-      object-fit: cover;
-      height: 260px;
-    }
-    @media (max-width: 900px) {
-      .story-wrap { grid-template-columns: 1fr; }
-      .story-photos img { height: 220px; }
-    }
-
-  
-    #story .story-text p { color: #fff; }
-    #story h2 { color: #fff; }
-    #story .meta { color: #f0f0f0; }
-
-  
-#story .story-text p, #story h2 { text-shadow: 0 1px 2px rgba(0,0,0,.18); }
-
-
-    /* Stacked vertical portraits for Our Story */
-    #story .story-wrap {
-      grid-template-columns: 1fr; /* stack text + photos if needed */
-    }
-    #story .story-photos {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-      justify-items: center;
-      margin-top: 12px;
-    }
-    #story .story-photos img {
-      width: 100%;
-      max-width: 480px; /* portrait width */
-      height: auto;     /* natural height for portrait */
-      aspect-ratio: 4 / 5; /* hint to layout */
-      object-fit: cover;
-      border-radius: 16px;
-      box-shadow: 0 10px 24px rgba(0,0,0,.08);
-    }
-
-  </style>
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kenneth & Jennifer — Coming Soon</title>
+  <meta name="robots" content="noindex, nofollow">
   <!-- Social Preview -->
-  <meta property="og:image" content="assets/images/gallery2.jpg">
+  <meta property="og:image" content="assets/images/preview.jpg">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Kenneth & Jennifer’s Wedding">
-  <meta property="og:description" content="Join us in West Palm Beach on Valentine’s Day 2026 to celebrate our wedding!">
-
-  <!-- Twitter card -->
+  <meta property="og:title" content="Kenneth & Jennifer’s Wedding — Coming Soon">
+  <meta property="og:description" content="Our wedding website launches soon. Join us in West Palm Beach on Valentine’s Day 2026.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="assets/images/gallery2.jpg">
-
-  <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+  <meta name="twitter:image" content="assets/images/preview.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --sage:#A3B7A2; --latte:#CBB89D; }
+    * { box-sizing: border-box; }
+    html, body { height:100%; margin:0; }
+    body {
+      background: linear-gradient(135deg, rgba(163,183,162,.92), rgba(203,184,157,.85)), url('assets/images/texture.png');
+      background-size: cover, 600px 600px;
+      background-repeat: no-repeat, repeat;
+      background-blend-mode: overlay, soft-light;
+      color:#fff; display:grid; place-items:center;
+      font-family:'Lato',sans-serif;
+    }
+    .card {
+      width:min(800px, 92%);
+      text-align:center;
+      padding:42px 26px;
+      backdrop-filter: blur(6px) saturate(120%);
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius:24px;
+      box-shadow: 0 24px 60px rgba(0,0,0,.25);
+    }
+    h1 { font-family:'Cormorant Garamond',serif; font-size: clamp(2rem, 6vw, 3.2rem); margin:0 0 6px; }
+    .sub { opacity:.95; margin:0 0 14px; }
+    .divider { width:220px; height:32px; margin:18px auto; background:url('assets/images/floral-divider.png') center/contain no-repeat; opacity:.9; }
+    .countdown { font-weight:700; letter-spacing:.5px; margin-top:8px; }
+    footer { position:fixed; left:0; right:0; bottom:10px; text-align:center; opacity:.85; font-size:.9rem; }
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="nav-wrap">
-      <button class="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
-        <span></span><span></span><span></span>
-      </button>
-      <a class="brand" href="#top" aria-label="Home">K & J</a>
-      <div class="spacer"></div>
-      <nav id="primary-nav" aria-label="Primary">
-        <a href="#details">Details</a>
-        <a href="#timeline">Timeline</a>
-        <a href="#story">Our Story</a>
-        <a href="#party">Wedding Party</a>
-        <a href="#travel">Travel</a>
-        <a href="#gallery">Photos</a>
-        <a href="#rsvp">RSVP</a>
-      
-        <a href="#recommendations">Recommendations</a>
-      </nav>
-    </div>
-  </header>
-
-  <section class="hero" id="home" aria-label="Hero">
-    <div class="inner">
-      <h1 class="title">Kenneth &amp; Jennifer</h1>
-      <p class="subtitle">Valentine’s Day 2026 • West Palm Beach, Florida</p>
-      <div id="countdown" class="countdown" aria-live="polite"></div>
-    </div>
-  </section>
-<section id="story" class="section container">
-      <h2>Our Story</h2>
-      <div class="floral"></div>
-      <div class="story-wrap">
-        <div class="story-text">
-          <p>Sometimes life has a funny way of bringing people together. Even though Kenneth and Jennifer lived close enough to cross paths dozens of times, it wasn’t until the internet stepped in that their love story truly began. From the very first conversations, it felt effortless — as if they had been waiting for this moment all along.</p>
-          <p>For Ken, the proposal was one of the easiest decisions he has ever made. He knew, as Jennifer knew, that they were perfect for each other — two souls that simply belonged together.</p>
-          <p>Their love has only deepened as they’ve built a beautiful life with their children, <strong>Eleanor</strong> and <strong>Oliver</strong>. Watching them grow together and embrace one another as brother and sister has been one of the greatest joys of their journey so far.</p>
-          <p>Now, as they prepare to exchange vows on Valentine’s Day 2026, Kenneth and Jennifer look forward to celebrating this next chapter surrounded by family and friends who have supported and cherished them along the way.</p>
-        </div>
-        <div class="story-photos">
-          <img src="assets/images/eleanor.jpg" alt="Eleanor">
-          <img src="assets/images/oliver.jpg" alt="Oliver">
-        </div>
-      </div>
-    </section>
-
-  <main>
-    <section id="details" class="section container">
-      <h2>Event Details</h2>
-      <div class="floral"></div>
-      <div class="details">
-        <div class="card">
-          <h3>Ceremony — 1:00 PM</h3>
-          <p><strong>St. Patrick Catholic Church</strong><br>13591 Prosperity Farms Rd, Palm Beach Gardens, FL 33410<br>
-          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps?q=13591+Prosperity+Farms+Rd,+Palm+Beach+Gardens,+FL+33410">Open in Google Maps</a></p>
-        </div>
-        <div class="card">
-          <h3>Reception — 5:00 PM–12:00 AM</h3>
-          <p><strong>Breakers West Country Club</strong><br>1550 Flagler Parkway, West Palm Beach, FL 33411<br>
-          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps?q=1550+Flagler+Parkway,+West+Palm+Beach,+FL+33411">Open in Google Maps</a></p>
-        </div>
-        <div class="card">
-          <h3>Dress Code</h3>
-          <p>Black tie optional. Warm, coastal palettes welcomed.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="timeline" class="section container">
-      <h2>Weekend Timeline</h2>
-      <div class="floral"></div>
-
-      <div class="timeline-one" aria-label="Wedding weekend timeline">
-        <div class="day">Friday · February 13 — Welcome Day</div>
-        <div class="item">
-          <div class="dot" aria-hidden="true"></div>
-          <div class="time">4:00 – 7:30 PM</div>
-          <div class="card">
-            <h4>Reception Party at Hilton West Palm (Front Lawn)</h4>
-            <p class="meta">Hilton West Palm Beach · Front Lawn</p>
-          </div>
-        </div>
-
-        <div class="day">Saturday · February 14 — Wedding Day</div>
-        <div class="item">
-          <div class="dot" aria-hidden="true"></div>
-          <div class="time">1:00 PM</div>
-          <div class="card">
-            <h4>Ceremony</h4>
-            <p class="meta">St. Patrick Catholic Church</p>
-          </div>
-        </div>
-        <div class="item">
-          <div class="dot" aria-hidden="true"></div>
-          <div class="time">5:00 PM – Midnight</div>
-          <div class="card">
-            <h4>Reception</h4>
-            <p class="meta">Breakers West Country Club</p>
-          </div>
-        </div>
-
-        <div class="day">Sunday · February 15 — Farewell Day</div>
-        <div class="item">
-          <div class="dot" aria-hidden="true"></div>
-          <div class="time">10:00 AM</div>
-          <div class="card">
-            <h4>Poolside Cabana</h4>
-            <p class="meta">Hilton West Palm Beach — Pool</p>
-          </div>
-        </div>
-      </div>
-</section>
-
-    
-
-    <section id="party" class="section container">
-      <h2>Wedding Party</h2>
-      <div class="floral"></div>
-      <p><strong>Maid of Honor:</strong> [Name] • <strong>Best Man:</strong> [Name]<br>
-      Bridesmaids & Groomsmen: [Names]</p>
-    </section>
-
-    <section id="travel" class="section container">
-      <h2>Travel & Lodging</h2>
-      <div class="floral"></div>
-      <p>Closest airport: PBI. Rideshare is widely available. We recommend Hilton West Palm Beach and Marriott Singer Island.</p>
-    </section>
-    <section id="recommendations" class="section container">
-      <h2>Local Recommendations</h2>
-      <div class="floral"></div>
-      <div class="details">
-        <div class="card">
-          <h3>RH Rooftop</h3>
-          <p>Elegant rooftop dining above The Square (Rosemary Square).</p>
-          <p>
-            <a class="btn" target="_blank" rel="noopener" href="https://maps.google.com/?q=RH+Rooftop+Restaurant+West+Palm+Beach">Maps</a>
-            <a class="btn" target="_blank" rel="noopener" href="https://rh.com/us/en/restaurants/west-palm-beach">Website</a>
-          </p>
-        </div>
-        <div class="card">
-          <h3>Avocado Grill</h3>
-          <p>Farm-to-table plates and vibrant cocktails; lively atmosphere.</p>
-          <p>
-            <a class="btn" target="_blank" rel="noopener" href="https://maps.google.com/?q=Avocado+Grill+West+Palm+Beach">Maps</a>
-            <a class="btn" target="_blank" rel="noopener" href="https://avocadogrillwpb.com/">Website</a>
-          </p>
-        </div>
-      </div>
-    </section>
-    
-
-
-
-
-
-    <section id="gallery" class="section container">
-      <h2>Photos</h2>
-      <div class="floral"></div>
-      <div class="gallery"><img src="assets/images/gallery1.jpg" alt="Engagement photo 1">
-        <img src="assets/images/gallery2.jpg" alt="Engagement photo 2">
-        <img src="assets/images/gallery3.jpg" alt="Engagement photo 3">
-        <img src="assets/images/gallery4.jpg" alt="Engagement photo 4">
-        <img src="assets/images/gallery5.jpg" alt="Engagement photo 5">
-        <img src="assets/images/gallery6.jpg" alt="Engagement photo 6">
-        <img src="assets/images/gallery7.jpg" alt="Engagement photo 7">
-        <img src="assets/images/gallery8.jpg" alt="Engagement photo 8">
-        <img src="assets/images/gallery9.jpg" alt="Engagement photo 9">
-        <img src="assets/images/gallery10.jpg" alt="Engagement photo 10"></div>
-    </section>
-
-    <section id="rsvp" class="section container">
-      <h2>RSVP</h2>
-      <div class="floral"></div>
-      <form class="rsvp" action="#" method="POST">
-        <label for="name">Full Name</label>
-        <input id="name" name="name" required>
-        <label for="attending">Will you attend?</label>
-        <select id="attending" name="attending" required>
-          <option value="">Please select</option>
-          <option value="yes">Yes, can’t wait!</option>
-          <option value="no">Sorry, can’t make it</option>
-        </select>
-        <label for="guests">Number of Guests</label>
-        <input id="guests" name="guests" type="number" min="1" max="10">
-        <label for="message">Message (Optional)</label>
-        <textarea id="message" name="message" rows="3"></textarea>
-        <button class="btn" type="submit">Submit RSVP</button>
-      </form>
-    </section>
+  <main class="card">
+    <p>Wedding Website</p>
+    <h1>Kenneth &amp; Jennifer</h1>
+    <p class="sub">Valentine’s Day 2026 • West Palm Beach, Florida</p>
+    <div class="divider"></div>
+    <p class="countdown" id="countdown">Countdown loading…</p>
+    <p>Our website is being polished. Check back soon!</p>
   </main>
-
-  <footer>
-    <div class="container">© 2026 Kenneth & Jennifer</div>
-  </footer>
-
+  <footer>© 2026 Kenneth & Jennifer</footer>
   <script>
-    // Countdown
-    const countdown = document.getElementById('countdown');
     const target = new Date('2026-02-14T00:00:00-05:00').getTime();
+    const el = document.getElementById('countdown');
     setInterval(() => {
-      const now = Date.now(); const diff = target - now;
-      const d = Math.floor(diff/86400000), h = Math.floor(diff%86400000/3600000), m = Math.floor(diff%3600000/60000), s = Math.floor(diff%60000/1000);
-      countdown.textContent = `Countdown: ${d}d ${h}h ${m}m ${s}s`;
+      const diff = target - Date.now();
+      if (diff < 0) { el.textContent = "It's time!"; return; }
+      const d = Math.floor(diff/86400000);
+      const h = Math.floor(diff%86400000/3600000);
+      const m = Math.floor(diff%3600000/60000);
+      const s = Math.floor(diff%60000/1000);
+      el.textContent = `Launching in ${d}d ${h}h ${m}m ${s}s`;
     }, 1000);
-
-    // Fade-in on scroll
-    const obs = new IntersectionObserver((entries)=>entries.forEach(e=>e.isIntersecting&&e.target.classList.add('visible')), {threshold:.1});
-    document.querySelectorAll('.section').forEach(el=>obs.observe(el));
   </script>
-
-  <script>
-    (function() {
-      const btn = document.querySelector('.hamburger');
-      const nav = document.getElementById('primary-nav');
-      if (!btn || !nav) return;
-
-      function closeMenu() {
-        btn.classList.remove('open');
-        nav.classList.remove('open');
-        btn.setAttribute('aria-expanded', 'false');
-      }
-
-      btn.addEventListener('click', (e) => {
-        const isOpen = btn.classList.toggle('open');
-        nav.classList.toggle('open', isOpen);
-        btn.setAttribute('aria-expanded', String(isOpen));
-      });
-
-      // Close when clicking a nav link
-      nav.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => closeMenu());
-      });
-
-      // Close when clicking outside
-      document.addEventListener('click', (e) => {
-        if (!nav.contains(e.target) && !btn.contains(e.target)) {
-          closeMenu();
-        }
-      });
-
-      // Close on escape
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeMenu();
-      });
-    })();
-  </script>
-
-  <script>
-    // Reveal vertical timeline items on scroll
-    (function() {
-      const items = document.querySelectorAll('.vtimeline-item');
-      const io = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('seen'); });
-      }, { threshold: 0.15 });
-      items.forEach(i => io.observe(i));
-    })();
-  </script>
-
-<script>
-  (function() {
-    const items = document.querySelectorAll('.timeline-one .item');
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('seen'); });
-    }, { threshold: 0.15 });
-    items.forEach(i => io.observe(i));
-  })();
-</script>
-
 </body>
 </html>
