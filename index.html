@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html id="top" lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Jennifer &amp; Kenneth’s Wedding
+  </title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&amp;family=Lato:wght@300;400;600&amp;display=swap" rel="stylesheet"/>
+  <style>
+   :root {
+      --cotton:#F8F5F2; --sage:#A3B7A2; --pine:#4A5A40; --latte:#CBB89D; --neutral:#3E3E3E;
+    }
+    html { scroll-behavior: smooth; }
+    * { box-sizing: border-box; }
+    body {
+      margin:0; color:var(--neutral); background:var(--cotton);
+      font-family:'Lato',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      background-image:url('assets/images/linen-texture.png');
+      background-size: 600px 600px;
+    }
+    header.site-header {
+      position: sticky; top:0; z-index:1000;
+      background:rgba(74,90,64,.92); /* pine */
+      backdrop-filter:saturate(140%) blur(6px);
+      border-bottom: 1px solid rgba(0,0,0,.08);
+    }
+    .nav-wrap { max-width:900px; margin:0 auto; padding:12px 16px; display:flex; align-items:center; gap:16px; }
+    .brand { color: #fff; text-decoration:none; font-weight:700; letter-spacing:.3px; }
+    .spacer { flex:1; }
+    nav a { color:#fff; text-decoration:none; font-weight:600; margin-left:16px; padding:8px 10px; border-radius:8px; }
+    nav a:hover, nav a:focus { background: rgba(255,255,255,.12); outline:none; }
+    .hero {
+      position:relative; min-height:72vh; display:grid; place-items:center; text-align:center; color:#fff;
+      background: url('assets/images/gallery5.jpg') center/cover no-repeat;
+    }
+    .hero::before {
+      content:""; position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(74,90,64,.55), rgba(203,184,157,.35));
+    }
+    .hero > .inner { position:relative; padding:64px 16px; }
+    h1.title { font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,6vw,3.2rem); margin:0 0 6px; }
+    .subtitle { margin:0; opacity:.95; }
+    .countdown { margin-top:14px; font-weight:700; }
+    .container { max-width:900px; margin:0 auto; padding:0 16px; }
+    section.section { padding:56px 0; scroll-margin-top:90px; }
+    section.section h2 { font-family:'Cormorant Garamond',serif; color:var(--pine); margin:0 0 12px; font-size:clamp(1.6rem,3vw,2rem);}
+    .floral { background:url('assets/images/floral-divider.png') center/contain no-repeat; height:40px; margin:28px auto; width:220px; opacity:.85; }
+    /* Fade-in on scroll */
+    .section { opacity:0; transform:translateY(16px); transition: all .8s ease; }
+    .section.visible { opacity:1; transform:none; }
+    /* Details grid */
+    .details { display:grid; gap:20px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
+    .card { background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:16px; padding:16px; box-shadow:0 8px 24px rgba(0,0,0,.06); }
+    .card h3 { margin:0 0 6px; color:var(--sage); }
+    .btn { display:inline-block; background:var(--pine); color:#fff; text-decoration:none; padding:10px 14px; border-radius:10px; }
+    .btn:hover { filter:brightness(.96); }
+    /* Timeline */
+    .timeline { position:relative; border-left:3px solid var(--sage); margin:0; padding-left:22px; }
+    .timeline .event { position:relative; margin:18px 0; }
+    .timeline .event::before { content:""; position:absolute; left:-11px; top:.2em; width:14px; height:14px; border-radius:50%; background:var(--sage); border:3px solid #fff; }
+    .timeline h4 { margin:0; color:var(--pine);}
+    /* Gallery */
+    .gallery { display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); }
+    .gallery img { width:100%; height:260px; object-fit:cover; border-radius:14px; box-shadow:0 8px 18px rgba(0,0,0,.08);}
+    /* RSVP form */
+    form.rsvp { display:grid; gap:12px; grid-template-columns:1fr 1fr; }
+    form.rsvp label { font-weight:600; }
+    form.rsvp input, form.rsvp select, form.rsvp textarea { grid-column:span 2; padding:10px 12px; border:1px solid #d7d3cc; border-radius:10px; background:#fff; }
+    form.rsvp button { grid-column:span 2; }
+    footer { background:var(--pine); color:#fff; padding:18px 0; margin-top:40px; }
+
+    /* Mobile Navigation */
+    .hamburger {
+      display: none;
+      width: 40px;
+      height: 34px;
+      border: none;
+      background: transparent;
+      position: relative;
+      cursor: pointer;
+      margin-right: 8px;
+    }
+    .hamburger span {
+      position: absolute;
+      left: 6px; right: 6px;
+      height: 3px; background: #fff; border-radius: 3px;
+      transition: transform .3s ease, opacity .3s ease, top .3s ease;
+    }
+    .hamburger span:nth-child(1) { top: 8px; }
+    .hamburger span:nth-child(2) { top: 16px; }
+    .hamburger span:nth-child(3) { top: 24px; }
+
+    .hamburger.open span:nth-child(1) { top: 16px; transform: rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { top: 16px; transform: rotate(-45deg); }
+
+    @media (max-width: 900px) {
+      .hamburger { display: inline-block; }
+      nav[aria-label="Primary"], nav#primary-nav {
+        position: absolute;
+        top: 60px; right: 12px; left: 12px;
+        background: rgba(74,90,64,.98);
+        border: 1px solid rgba(255,255,255,.15);
+        border-radius: 12px;
+        padding: 10px;
+        display: none;
+        box-shadow: 0 16px 30px rgba(0,0,0,.25);
+      }
+      nav[aria-label="Primary"].open, nav#primary-nav.open { display: block; }
+      nav a { display: block; margin: 8px 0; padding: 10px 12px; }
+      .nav-wrap { position: relative; }
+    }
+
+    /* Elaborate Vertical Timeline */
+    .vtimeline {
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px 0 10px;
+    }
+    .vtimeline::before {
+      content: "";
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 50%;
+      width: 4px;
+      background: linear-gradient(var(--sage), var(--latte));
+      transform: translateX(-50%);
+      border-radius: 4px;
+      opacity: .9;
+    }
+    .vtimeline-item {
+      position: relative;
+      width: 50%;
+      padding: 14px 24px 14px 24px;
+    }
+    .vtimeline-item .badge {
+      display: inline-block;
+      background: #fff;
+      color: var(--pine);
+      border: 2px solid var(--sage);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-weight: 700;
+      font-size: .9rem;
+      letter-spacing: .2px;
+      box-shadow: 0 6px 16px rgba(0,0,0,.08);
+    }
+    .vtimeline-item .dot {
+      position: absolute;
+      top: 20px;
+      width: 18px; height: 18px;
+      background: var(--sage);
+      border: 3px solid #fff;
+      border-radius: 50%;
+      z-index: 2;
+      box-shadow: 0 4px 10px rgba(0,0,0,.12);
+    }
+    .vtimeline-item.left { left: 0; text-align: right; }
+    .vtimeline-item.left .dot { right: -9px; }
+    .vtimeline-item.right { left: 50%; }
+    .vtimeline-item.right .dot { left: -9px; }
+    .vtimeline-card {
+      display: inline-block;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,.06);
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-top: 8px;
+      text-align: left;
+      box-shadow: 0 10px 30px rgba(0,0,0,.08);
+      max-width: 420px;
+    }
+    .vtimeline-card h4 { margin: 0 0 6px; color: var(--pine); }
+    .vtimeline-card p { margin: 0; }
+    .vtimeline-card .meta { color: #6b7280; font-size: .9rem; margin-bottom: 6px; }
+    .vtimeline-card .actions a {
+      display: inline-block;
+      margin-top: 8px;
+      font-weight: 600;
+      color: #fff;
+      background: var(--pine);
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: 10px;
+    }
+    /* Reveal animation for items */
+    .vtimeline-item { opacity: 0; transform: translateY(18px); transition: all .8s ease; }
+    .vtimeline-item.seen { opacity: 1; transform: none; }
+    /* Responsive: stack vertically on small screens */
+    @media (max-width: 900px) {
+      .vtimeline::before { left: 22px; transform: none; }
+      .vtimeline-item, .vtimeline-item.left, .vtimeline-item.right { width: 100%; left: 0; text-align: left; padding-left: 56px; }
+      .vtimeline-item .dot { left: 14px; right: auto; }
+      .vtimeline-card { max-width: 100%; }
+    }
+
+  
+    /* One-sided clean vertical timeline */
+    .timeline-one {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 6px 0 10px 28px; /* space for spine */
+      border-left: 3px solid var(--sage);
+    }
+    .timeline-one .day {
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--pine);
+      margin: 28px 0 12px;
+      text-align: left;
+      font-size: clamp(1.1rem, 2.4vw, 1.35rem);
+    }
+    .timeline-one .item {
+      position: relative;
+      margin: 14px 0 20px 0;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: all .6s ease;
+    }
+    .timeline-one .item.seen {
+      opacity: 1;
+      transform: none;
+    }
+    .timeline-one .dot {
+      position: absolute;
+      left: -10px;
+      top: 6px;
+      width: 16px;
+      height: 16px;
+      background: var(--sage);
+      border: 3px solid #fff;
+      border-radius: 50%;
+      box-shadow: 0 4px 10px rgba(0,0,0,.12);
+    }
+    .timeline-one .time {
+      color: #6b7280;
+      font-weight: 700;
+      margin-left: 4px;
+      margin-bottom: 6px;
+      font-size: .95rem;
+    }
+    .timeline-one .card {
+      background: #fff;
+      border: 1px solid rgba(0,0,0,.06);
+      border-radius: 14px;
+      padding: 14px 16px;
+      box-shadow: 0 10px 24px rgba(0,0,0,.06);
+    }
+    .timeline-one .card h4 {
+      margin: 0 0 6px;
+      color: var(--pine);
+    }
+    .timeline-one .card .meta {
+      margin: 0;
+      color: #374151;
+    }
+    @media (max-width: 700px) {
+      .timeline-one { padding-left: 24px; }
+      .timeline-one .dot { left: -11px; }
+    }
+
+  
+    /* Our Story section */
+    #story.section {
+  background-image:
+    linear-gradient(135deg, var(--sage) 0%, var(--latte) 100%),
+    url('assets/images/floral-watercolor.png');
+  background-size: cover, 600px 600px;
+  background-repeat: no-repeat, repeat;
+  background-position: center, top left;
+  background-blend-mode: overlay, soft-light;
+  color: #fff;
+  padding: 70px 20px;
+}
+    .story-wrap {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+    .story-text p { line-height: 1.75; margin: 0 0 14px; }
+    .story-photos {
+      display: grid;
+      gap: 12px;
+    }
+    .story-photos img {
+      width: 100%;
+      border-radius: 14px;
+      box-shadow: 0 10px 24px rgba(0,0,0,.08);
+      object-fit: cover;
+      height: 260px;
+    }
+    @media (max-width: 900px) {
+      .story-wrap { grid-template-columns: 1fr; }
+      .story-photos img { height: 220px; }
+    }
+
+  
+    #story .story-text p { color: #fff; }
+    #story h2 { color: #fff; }
+    #story .meta { color: #f0f0f0; }
+
+  
+#story .story-text p, #story h2 { text-shadow: 0 1px 2px rgba(0,0,0,.18); }
+
+
+    /* Stacked vertical portraits for Our Story */
+    #story .story-wrap {
+      grid-template-columns: 1fr; /* stack text + photos if needed */
+    }
+    #story .story-photos {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      justify-items: center;
+      margin-top: 12px;
+    }
+    #story .story-photos img {
+      width: 100%;
+      max-width: 480px; /* portrait width */
+      height: auto;     /* natural height for portrait */
+      aspect-ratio: 4 / 5; /* hint to layout */
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 10px 24px rgba(0,0,0,.08);
+    }
+
+  
+/* === Romantic headings: Playfair Display (Classic Romance) === */
+h1.title,
+section.section h2,
+.card h3,
+.timeline h4,
+.timeline-one .day,
+.brand,
+.hero .subtitle strong,
+footer h4,
+h2.section-title {
+  font-family: 'Playfair Display', 'Cormorant Garamond', serif !important;
+  letter-spacing: 0.2px;
+}
+/* Slightly refined weights & sizes for elegance */
+h1.title { font-weight: 700; }
+section.section h2 { font-weight: 600; }
+.card h3, .timeline h4, .timeline-one .day { font-weight: 600; }
+
+  
+
+h1.title,
+section.section h2,
+.card h3,
+.timeline h4,
+.timeline-one .day,
+.brand,
+h2.section-title {
+  font-family: 'Dancing Script', 'Cormorant Garamond', serif !important;
+  letter-spacing: 0.2px;
+}
+/* Larger, flowy hero title */
+h1.title {
+  font-weight: 700;
+  font-size: clamp(2.4rem, 7vw, 4.2rem) !important;
+  line-height: 1.08;
+  text-shadow: 0 2px 10px rgba(0,0,0,.15);
+}
+section.section h2 { font-weight: 600; font-size: clamp(1.8rem, 3.6vw, 2.4rem) !important; }
+.card h3, .timeline h4, .timeline-one .day { font-weight: 600; font-size: clamp(1.25rem, 2.6vw, 1.6rem) !important; }
+
+/* Hero name accent glow: subtle latte-gold gradient behind the title */
+.title-accent {
+  position: relative;
+  display: inline-block;
+}
+.title-accent::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: -10% -6%;
+  border-radius: 28px;
+  background: radial-gradient(60% 60% at 50% 50%, rgba(253, 246, 236, 0.9), rgba(203, 184, 157, 0.45) 60%, rgba(203, 184, 157, 0.0) 100%);
+  filter: blur(2px);
+}
+.title-accent > .title {
+  position: relative;
+  z-index: 1;
+}
+
+  
+/* === Hero Title: Great Vibes (Flowy Invitation Style) === */
+h1.title {
+  font-family: 'Great Vibes', cursive !important;
+  font-weight: 400;
+  font-size: clamp(3rem, 10vw, 6rem) !important;
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+
+  
+/* === Stacked Modern Calligraphy Title (Alex Brush) === */
+.hero .title {
+  font-family: 'Alex Brush', cursive !important;
+  font-weight: 400;
+  color: #7B4B33; /* warm brown ink */
+  line-height: 1.02;
+  margin: 0;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.05);
+  font-size: clamp(3rem, 10vw, 6rem) !important;
+}
+.hero .title .line { display: block; }
+.hero .title .amp { 
+  display: block; 
+  font-size: clamp(1.6rem, 5vw, 2.6rem);
+  margin: .1em 0 .05em;
+  opacity: .9;
+}
+
+  
+
+/* === Stacked Hero Title (White & Larger) === */
+.stacked-title {
+  font-family: 'Alex Brush', cursive !important;
+  color: #ffffff;
+  text-align: center;
+  line-height: 1.0;
+  display: inline-block;
+  text-shadow: 0 3px 14px rgba(0,0,0,0.35);
+}
+.stacked-title .line {
+  display: block;
+  font-size: clamp(3.4rem, 12vw, 8rem);
+  font-weight: 400;
+}
+.stacked-title .amp {
+  display: block;
+  font-size: clamp(2.6rem, 10vw, 6rem);
+  margin: 0.15em 0;
+  font-weight: 400;
+}
+h1.title { margin: 0; }
+
+
+  
+/* === Hero Title Face-safe Offsets === */
+.hero > .inner {
+  /* place content toward the lower third for better face clearance */
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 72vh;
+  padding: 22vh 16px 10vh; /* top, sides, bottom */
+}
+/* On taller screens, nudge a bit lower */
+@media (min-height: 900px) {
+  .hero > .inner { padding-top: 26vh; padding-bottom: 12vh; }
+}
+/* On small phones, keep ample clearance but avoid cropping */
+@media (max-width: 480px) {
+  .hero > .inner { padding-top: 18vh; padding-bottom: 8vh; }
+}
+
+  
+/* === Global Titles: Alex Brush applied to major headings === */
+h1, h2, h3,
+section.section h2,
+.card h3,
+.timeline h4,
+.timeline-one .day,
+h2.section-title,
+.nav .brand {
+  font-family: 'Alex Brush', cursive !important;
+  letter-spacing: 0.2px;
+}
+/* Maintain reasonable weights/sizes for readability */
+section.section h2 { font-weight: 400; }
+.card h3, .timeline h4, .timeline-one .day { font-weight: 400; }
+
+    .rsvp-banner {
+      background: var(--latte);
+      color: var(--neutral);
+      padding: 10px 16px;
+      text-align: center;
+      font-size: 0.95rem;
+      border-bottom: 1px solid rgba(0,0,0,.06);
+      line-height: 1.4;
+    }
+    .rsvp-banner strong {
+      color: var(--pine);
+      font-weight: 600;
+    }
+
+/* Keep body text unchanged (Lato/Cormorant remain) */
+  </style>
+  <!-- Social Preview -->
+  <meta content="assets/images/gallery2.jpg" property="og:image"/>
+  <meta content="website" property="og:type"/>
+  <meta content="Jennifer &amp; Kenneth’s Wedding" property="og:title"/>
+  <meta content="Join us in West Palm Beach on Valentine’s Day 2026 to celebrate our wedding!" property="og:description"/>
+  <!-- Twitter card -->
+  <meta content="summary_large_image" name="twitter:card"/>
+  <meta content="assets/images/gallery2.jpg" name="twitter:image"/>
+  <link href="assets/images/favicon.ico" rel="icon" type="image/x-icon"/>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&amp;display=swap" rel="stylesheet"/>
+  <style>
+   /* Responsive tweak for Wedding Party grid */
+@media (max-width: 480px) {
+  .party-grid {
+    grid-template-columns: 1fr !important; /* 1×6 on small phones */
+    max-width: 520px !important;
+  }
+}
+  </style>
+ </head>
+ <body>
+  <header class="site-header">
+   <div class="nav-wrap">
+    <button aria-controls="primary-nav" aria-expanded="false" aria-label="Open menu" class="hamburger">
+     <span>
+     </span>
+     <span>
+     </span>
+     <span>
+     </span>
+    </button>
+    <a aria-label="Home" class="brand" href="#top">
+     J &amp; K
+    </a>
+    <div class="spacer">
+    </div>
+    <nav aria-label="Primary" id="primary-nav">
+     <a href="#story">
+      Our Story
+     </a>
+     <a href="#timeline">
+      Wedding Weekend Timeline
+     </a>
+     <a href="#travel">
+      Travel &amp; Lodging
+     </a>
+     <a href="#party">
+      Wedding Party
+     </a>
+     <a href="#faq">
+      FAQ
+     </a>
+     <a href="#registry">
+      Registry
+     </a>
+     <a href="#gallery">
+      Photos
+     </a>
+    </nav>
+   </div>
+  </header>
+  <div class="rsvp-banner">
+   Our invitations listed an earlier “respond by” date, but please don’t worry —
+   <strong>we’re happily accepting RSVPs through December 31, 2025.</strong>
+  </div>
+  <section aria-label="Hero" class="hero" id="home">
+   <div class="inner">
+    <h1 class="title">
+     <span class="stacked-title">
+      <span class="line">
+       Jennifer
+      </span>
+      <span class="amp">
+       &amp;
+      </span>
+      <span class="line">
+       Kenneth
+      </span>
+     </span>
+    </h1>
+    <p class="subtitle">
+     February 14, 2026 • Valentine’s Day
+    </p>
+    <div aria-live="polite" class="countdown" id="countdown">
+    </div>
+   </div>
+  </section>
+  <section class="section" id="story" style="background: var(--latte);">
+   <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; max-width: 1200px; margin: 0 auto; padding: 2rem;">
+    <div class="story-photo">
+     <img alt="Engagement photo" src="assets/images/gallery1.jpg" style="width:100%; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,.15);"/>
+    </div>
+    <div class="story-text" style="color:#1f2937;">
+     <h2>
+      Our Story
+     </h2>
+     <p>
+      Sometimes life has a funny way of bringing people together. Even though Kenneth and Jennifer lived close enough to cross paths dozens of times, it wasn’t until the internet stepped in that their love story truly began. From the very first conversations, it felt effortless — as if they had been waiting for this moment all along.
+     </p>
+     <p>
+      For Ken, the proposal was one of the easiest decisions he has ever made. He knew, as Jennifer knew, that they were perfect for each other — two souls that simply belonged together.
+     </p>
+     <p>
+      Their love has only deepened as they’ve built a beautiful life with their children,
+      <strong>
+       Eleanor
+      </strong>
+      and
+      <strong>
+       Oliver
+      </strong>
+      . Watching them grow together and embrace one another as brother and sister has been one of the greatest joys of their journey so far.
+     </p>
+     <p>
+      Now, as they prepare to exchange vows on
+      <strong>
+       Valentine’s Day 2026
+      </strong>
+      , Jennifer and Kenneth look forward to celebrating this next chapter surrounded by family and friends who have supported and cherished them along the way.
+     </p>
+    </div>
+   </div>
+   <div class="story-photos" style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 2rem; max-width: 1000px; margin-left:auto; margin-right:auto;">
+    <img alt="Eleanor" loading="lazy" src="assets/images/eleanor.jpg" style="width:100%; max-width:400px; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,.15);"/>
+    <img alt="Oliver" loading="lazy" src="assets/images/oliver.jpg" style="width:100%; max-width:400px; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,.15);"/>
+   </div>
+  </section>
+  <section class="section container" id="timeline">
+   <h2>
+    Jennifer and Kenneth’s Wedding Weekend
+   </h2>
+   <div class="floral">
+   </div>
+   <div aria-label="Wedding weekend schedule and details" class="timeline-one" style="max-width:900px;margin:0 auto;">
+    <div class="day" style="margin-top:2rem;border-top:1px solid var(--sage);padding-top:2rem;">
+     Friday · February 13 — Welcome Reception
+    </div>
+    <div class="item" style="margin-bottom:3rem;">
+     <div aria-hidden="true" class="dot">
+     </div>
+     <div class="time" style="font-weight:600;font-size:1.1rem;margin-bottom:0.25rem;">
+      4:00 – 7:30 PM
+     </div>
+     <div class="card" style="padding-left:0.5rem;">
+      <h4 style="font-size:1.3rem;font-weight:600;margin:0 0 .5rem;color:var(--pine);">
+       Reception Party — Hilton West Palm (Event Space Lawn)
+      </h4>
+      <p class="meta" style="font-style:italic;margin:0 0 .75rem;">
+       600 Okeechobee Blvd, West Palm Beach, FL 33401
+      </p>
+      <p>
+       We’ll begin the celebration with an evening of mingling, cocktails, and music beneath the palm trees. Enjoy drinks, laughter, and the gentle sounds of a live
+       <strong>
+        harp duo
+       </strong>
+       as the sun sets. Everyone is warmly invited.
+      </p>
+      <p>
+       <em>
+        Suggested attire:
+       </em>
+       Resort chic — light, festive, and comfortable for a South Florida evening.
+      </p>
+      <p>
+       <a class="btn" href="https://www.google.com/maps?q=Hilton+West+Palm+Beach,600+Okeechobee+Blvd,+West+Palm+Beach,+FL+33401" rel="noopener" target="_blank">
+        Open in Google Maps
+       </a>
+      </p>
+     </div>
+    </div>
+    <div class="day" style="margin-top:2rem;border-top:1px solid var(--sage);padding-top:2rem;">
+     Saturday · February 14 — Wedding Day
+    </div>
+    <div class="item" style="margin-bottom:3rem;">
+     <div aria-hidden="true" class="dot">
+     </div>
+     <div class="time" style="font-weight:600;font-size:1.1rem;margin-bottom:0.25rem;">
+      1:00 PM
+     </div>
+     <div class="card" style="padding-left:0.5rem;">
+      <h4 style="font-size:1.3rem;font-weight:600;margin:0 0 .5rem;color:var(--pine);">
+       Ceremony — St. Patrick Catholic Church
+      </h4>
+      <p class="meta" style="font-style:italic;margin:0 0 .75rem;">
+       13591 Prosperity Farms Rd, Palm Beach Gardens, FL 33410
+      </p>
+      <p>
+       Please plan to be seated by
+       <strong>
+        12:30 PM
+       </strong>
+       as we begin our ceremony promptly at one.
+      </p>
+      <p>
+       <em>
+        Suggested attire:
+       </em>
+       Traditional church attire — modest and elegant.
+      </p>
+      <p>
+       <a class="btn" href="https://www.google.com/maps?q=13591+Prosperity+Farms+Rd,+Palm+Beach+Gardens,+FL+33410" rel="noopener" target="_blank">
+        Open in Google Maps
+       </a>
+      </p>
+     </div>
+    </div>
+    <div class="item" style="margin-bottom:3rem;">
+     <div aria-hidden="true" class="dot">
+     </div>
+     <div class="time" style="font-weight:600;font-size:1.1rem;margin-bottom:0.25rem;">
+      6:00 PM – 12:00 AM
+     </div>
+     <div class="card" style="padding-left:0.5rem;">
+      <h4 style="font-size:1.3rem;font-weight:600;margin:0 0 .5rem;color:var(--pine);">
+       Evening Celebration — Breakers West Country Club
+      </h4>
+      <p class="meta" style="font-style:italic;margin:0 0 .75rem;">
+       1550 Flagler Parkway, West Palm Beach, FL 33411
+      </p>
+      <p>
+       The evening will unfold as follows:
+      </p>
+      <ul style="list-style:none;padding:0;margin:1em 0;line-height:1.7;">
+       <li>
+        •
+        <strong>
+         6:00 – 7:30 PM
+        </strong>
+        — Cocktail hour and hors d’oeuvres
+       </li>
+       <li>
+        •
+        <strong>
+         7:30 PM
+        </strong>
+        — Introductions and first dance
+       </li>
+       <li>
+        •
+        <strong>
+         8:00 PM
+        </strong>
+        — Dinner is served
+       </li>
+       <li>
+        •
+        <strong>
+         9:00 – 11:00 PM
+        </strong>
+        — Dancing and celebration
+       </li>
+       <li>
+        •
+        <strong>
+         11:00 PM
+        </strong>
+        — Late-night snacks and final toasts
+       </li>
+       <li>
+        •
+        <strong>
+         Midnight
+        </strong>
+        — Farewell for the evening
+       </li>
+      </ul>
+      <p>
+       <em>
+        Suggested attire:
+       </em>
+       Black tie optional — formal gowns and tuxedos are welcome; polished cocktail or evening attire is equally appreciated.
+      </p>
+      <p>
+       <a class="btn" href="https://www.google.com/maps?q=1550+Flagler+Parkway,+West+Palm+Beach,+FL+33411" rel="noopener" target="_blank">
+        Open in Google Maps
+       </a>
+      </p>
+     </div>
+    </div>
+    <div class="day" style="margin-top:2rem;border-top:1px solid var(--sage);padding-top:2rem;">
+     Sunday · February 15 — Farewell by the Pool
+    </div>
+    <div class="item" style="margin-bottom:3rem;">
+     <div aria-hidden="true" class="dot">
+     </div>
+     <div class="time" style="font-weight:600;font-size:1.1rem;margin-bottom:0.25rem;">
+      10:00 AM – 1:00 PM
+     </div>
+     <div class="card" style="padding-left:0.5rem;">
+      <h4 style="font-size:1.3rem;font-weight:600;margin:0 0 .5rem;color:var(--pine);">
+       Relax &amp; Unwind — Hilton West Palm Pool
+      </h4>
+      <p class="meta" style="font-style:italic;margin:0 0 .75rem;">
+       600 Okeechobee Blvd, West Palm Beach, FL 33401
+      </p>
+      <p>
+       We’ve booked a cabana and will be by the pool for a laid‑back farewell. If you’re staying at the hotel, drop by to soak up a little more sunshine with us.
+      </p>
+      <p>
+       <a class="btn" href="https://www.google.com/maps?q=Hilton+West+Palm+Beach,600+Okeechobee+Blvd,+West+Palm+Beach,+FL+33401" rel="noopener" target="_blank">
+        Open in Google Maps
+       </a>
+      </p>
+     </div>
+    </div>
+   </div>
+  </section>
+  <section class="section" id="travel">
+   <div style="max-width: 1000px; margin: 0 auto; text-align: center;">
+    <h2>
+     Travel &amp; Lodging
+    </h2>
+    <p>
+     We’ve reserved a room block at the
+     <strong>
+      Hilton West Palm Beach
+     </strong>
+     for our guests’ convenience.
+    </p>
+    <p>
+     <a href="https://book.passkey.com/go/ZLMWB" rel="noopener" style="color: var(--pine); font-weight: 600;" target="_blank">
+      Reserve your room at the group rate
+     </a>
+    </p>
+    <p>
+     Hilton West Palm Beach
+     <br/>
+     600 Okeechobee Blvd, West Palm Beach, FL 33401
+    </p>
+    <div style="margin-top: 1.5rem;">
+     <iframe allowfullscreen="" height="300" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3585.406249274317!2d-80.05800228497152!3d26.706276083212315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d92b0c3c4e8f71%3A0x68a5dfe18c5ff9d!2sHilton%20West%20Palm%20Beach!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" style="border:0; border-radius: 12px;" width="100%">
+     </iframe>
+    </div>
+   </div>
+  </section>
+  <section class="section container" id="party">
+   <h2>
+    Wedding Party
+   </h2>
+   <div class="party-grid" style="display:grid;gap:28px;margin:0 auto">
+    <div class="person" style="text-align:center;">
+     <div style="font-weight:800;color:#1f2937;">
+      Ana Martinez
+     </div>
+     <img alt="Ana Martinez — Maid of Honor" loading="lazy" src="assets/images/party-ana-martinez.jpg" style="width:200px;height:200px;border-radius:50%;object-fit:cover;border:4px solid var(--sage);box-shadow:0 8px 20px rgba(0,0,0,.12);"/>
+     <div style="margin-top:.4rem;font-style:italic;font-family:'Cormorant Garamond',serif;color:var(--pine);">
+      Maid of Honor
+     </div>
+    </div>
+    <div class="person" style="text-align:center;">
+     <div style="font-weight:800;color:#1f2937;">
+      JJ Lipinski
+     </div>
+     <img alt="JJ Lipinski — Best Man" loading="lazy" src="assets/images/party-jj-lipinski.jpg" style="width:200px;height:200px;border-radius:50%;object-fit:cover;border:4px solid var(--sage);box-shadow:0 8px 20px rgba(0,0,0,.12);"/>
+     <div style="margin-top:.4rem;font-style:italic;font-family:'Cormorant Garamond',serif;color:var(--pine);">
+      Best Man
+     </div>
+    </div>
+    <div class="person" style="text-align:center;">
+     <div style="font-weight:800;color:#1f2937;">
+      Vivian Leo
+     </div>
+     <img alt="Vivian Leo — Flower Girl" loading="lazy" src="assets/images/party-vivian-leo.jpg" style="width:200px;height:200px;border-radius:50%;object-fit:cover;border:4px solid var(--sage);box-shadow:0 8px 20px rgba(0,0,0,.12);"/>
+     <div style="margin-top:.4rem;font-style:italic;font-family:'Cormorant Garamond',serif;color:var(--pine);">
+      Flower Girl
+     </div>
+    </div>
+    <div class="person" style="text-align:center;">
+     <div style="font-weight:800;color:#1f2937;">
+      Eleanor Nezgoda
+     </div>
+     <img alt="Eleanor Nezgoda — Flower Girl" loading="lazy" src="assets/images/party-eleanor-nezgoda.jpg" style="width:200px;height:200px;border-radius:50%;object-fit:cover;border:4px solid var(--sage);box-shadow:0 8px 20px rgba(0,0,0,.12);"/>
+     <div style="margin-top:.4rem;font-style:italic;font-family:'Cormorant Garamond',serif;color:var(--pine);">
+      Flower Girl
+     </div>
+    </div>
+    <div class="person" style="text-align:center;">
+     <div style="font-weight:800;color:#1f2937;">
+      Oliver Martinez
+     </div>
+     <img alt="Oliver Martinez — Ring Bearer" loading="lazy" src="assets/images/party-oliver-martinez.jpg" style="width:200px;height:200px;border-radius:50%;object-fit:cover;border:4px solid var(--sage);box-shadow:0 8px 20px rgba(0,0,0,.12);"/>
+     <div style="margin-top:.4rem;font-style:italic;font-family:'Cormorant Garamond',serif;color:var(--pine);">
+      Ring Bearer
+     </div>
+    </div>
+    <div class="person" style="text-align:center;">
+     <div style="font-weight:800;color:#1f2937;">
+      James Leo
+     </div>
+     <img alt="James Leo — Ring Bearer" loading="lazy" src="assets/images/party-james-leo.jpg" style="width:200px;height:200px;border-radius:50%;object-fit:cover;border:4px solid var(--sage);box-shadow:0 8px 20px rgba(0,0,0,.12);"/>
+     <div style="margin-top:.4rem;font-style:italic;font-family:'Cormorant Garamond',serif;color:var(--pine);">
+      Ring Bearer
+     </div>
+    </div>
+   </div>
+  </section>
+  <section class="section container" id="faq">
+   <h2>
+    FAQ
+   </h2>
+   <div class="faq-item" style="max-width:900px;margin:0 auto;">
+    <h3 style="font-size:1.3rem;font-weight:700;color:var(--pine);margin-bottom:.5rem;">
+     What are good restaurants that are nearby?
+    </h3>
+    <div class="answer" style="line-height:1.7;">
+     <ul style="list-style: disc; padding-left: 1.25rem; line-height:1.7;">
+      <li>
+       <strong>
+        RH Rooftop
+       </strong>
+       — elegant rooftop restaurant at RH West Palm with open‑air terrace views and refined modern American fare.
+       <a href="https://rh.com/content/restaurant/westpalmbeach" rel="noopener" target="_blank">
+        Website
+       </a>
+       ·
+       <a href="https://www.google.com/maps/search/?api=1&amp;query=RH+Rooftop+West+Palm+Beach+West+Palm+Beach%2C+FL" rel="noopener" target="_blank">
+        Map
+       </a>
+      </li>
+      <li>
+       <strong>
+        Il Bellagio
+       </strong>
+       — classic Italian in Rosemary Square (CityPlace); house‑made pastas and a lively patio.
+       <a href="https://ilbellagio.com/" rel="noopener" target="_blank">
+        Website
+       </a>
+       ·
+       <a href="https://www.google.com/maps/search/?api=1&amp;query=Il+Bellagio+West+Palm+Beach%2C+FL" rel="noopener" target="_blank">
+        Map
+       </a>
+      </li>
+      <li>
+       <strong>
+        Eataly (West Palm Beach — coming soon)
+       </strong>
+       — expansive Italian market + restaurants; a fun food‑hall style stop once open.
+       <a href="https://www.eataly.com/" rel="noopener" target="_blank">
+        Website
+       </a>
+       ·
+       <a href="https://www.google.com/maps/search/?api=1&amp;query=Eataly+West+Palm+Beach+West+Palm+Beach%2C+FL" rel="noopener" target="_blank">
+        Map
+       </a>
+      </li>
+      <li>
+       <strong>
+        Hullabaloo
+       </strong>
+       — gastropub on Clematis with craft cocktails and Italian‑leaning comfort dishes.
+       <a href="https://sub-culture.org/hullabaloo/" rel="noopener" target="_blank">
+        Website
+       </a>
+       ·
+       <a href="https://www.google.com/maps/search/?api=1&amp;query=Hullabaloo+West+Palm+Beach%2C+FL" rel="noopener" target="_blank">
+        Map
+       </a>
+      </li>
+      <li>
+       <strong>
+        Rocco’s Tacos
+       </strong>
+       — lively Mexican spot with tableside guac and big tequila list on Clematis Street.
+       <a href="https://www.roccostacos.com/west-palm-beach/" rel="noopener" target="_blank">
+        Website
+       </a>
+       ·
+       <a href="https://www.google.com/maps/search/?api=1&amp;query=Rocco%27s+Tacos+West+Palm+Beach+West+Palm+Beach%2C+FL" rel="noopener" target="_blank">
+        Map
+       </a>
+      </li>
+      <li>
+       <strong>
+        Grato
+       </strong>
+       — Chef Clay Conley’s neighborhood favorite for wood‑fired pizza and housemade pasta.
+       <a href="https://www.gratowpb.com/" rel="noopener" target="_blank">
+        Website
+       </a>
+       ·
+       <a href="https://www.google.com/maps/search/?api=1&amp;query=Grato+West+Palm+Beach+West+Palm+Beach%2C+FL" rel="noopener" target="_blank">
+        Map
+       </a>
+      </li>
+      <li>
+       <strong>
+        Elisabetta’s Ristorante
+       </strong>
+       — classic Italian with handmade pasta and pizzas near the water on Clematis.
+       <a href="https://www.elisabettas.com/wpb" rel="noopener" target="_blank">
+        Website
+       </a>
+       ·
+       <a href="https://www.google.com/maps/search/?api=1&amp;query=Elisabetta%27s+West+Palm+Beach+West+Palm+Beach%2C+FL" rel="noopener" target="_blank">
+        Map
+       </a>
+      </li>
+      <li>
+       <strong>
+        BurgerFi
+       </strong>
+       — casual, family‑friendly burgers and fries near Rosemary Square.
+       <a href="https://burgerfi.com" rel="noopener" target="_blank">
+        Website
+       </a>
+       ·
+       <a href="https://www.google.com/maps/search/?api=1&amp;query=BurgerFi+West+Palm+Beach+West+Palm+Beach%2C+FL" rel="noopener" target="_blank">
+        Map
+       </a>
+      </li>
+     </ul>
+    </div>
+   </div>
+  </section>
+  <section class="section container" id="registry">
+   <h2>
+    Registry
+   </h2>
+   <div class="details">
+    <div class="card">
+     <h3>
+      Williams Sonoma
+     </h3>
+     <a class="btn" href="https://www.williams-sonoma.com/registry/tdstmmm9lg/registry-list.html" rel="noopener" target="_blank">
+      View Our Williams Sonoma Registry
+     </a>
+     <p>
+      Your love, laughter, and support mean the world to us. As we continue building our blended family and plan our honeymoon, contributions toward those experiences would be deeply appreciated. For those who prefer traditional gifts, our registry is available above.
+     </p>
+    
+     <p style="font-family:'Cormorant Garamond',serif;font-style:italic;margin:0;margin-top:8px;color:var(--pine);">Use guest access code <strong>KenJen214</strong> to view our registry.</p></div>
+   </div>
+   <div class="floral">
+   </div>
+   
+  </section>
+  <section class="section container" id="gallery">
+   <h2>
+    Photos
+   </h2>
+   <div class="floral">
+   </div>
+   <div class="gallery">
+    <img alt="Engagement photo 1" loading="lazy" src="assets/images/gallery1.jpg"/>
+    <img alt="Engagement photo 2" loading="lazy" src="assets/images/gallery2.jpg"/>
+    <img alt="Engagement photo 3" loading="lazy" src="assets/images/gallery3.jpg"/>
+    <img alt="Engagement photo 4" loading="lazy" src="assets/images/gallery4.jpg"/>
+    <img alt="Engagement photo 5" loading="lazy" src="assets/images/gallery5.jpg"/>
+    <img alt="Engagement photo 6" loading="lazy" src="assets/images/gallery6.jpg"/>
+    <img alt="Engagement photo 7" loading="lazy" src="assets/images/gallery7.jpg"/>
+    <img alt="Engagement photo 8" loading="lazy" src="assets/images/gallery8.jpg"/>
+    <img alt="Engagement photo 9" loading="lazy" src="assets/images/gallery9.jpg"/>
+    <img alt="Engagement photo 10" loading="lazy" src="assets/images/gallery10.jpg"/>
+   </div>
+  </section>
+  <main>
+   <div class="floral">
+   </div>
+  </main>
+  <footer>
+   <div class="container">
+    © 2026 Jennifer &amp; Kenneth
+   </div>
+  </footer>
+  <script>
+   // Countdown
+    const countdown = document.getElementById('countdown');
+    const target = new Date('2026-02-14T00:00:00-05:00').getTime();
+    setInterval(() => {
+      const now = Date.now(); const diff = target - now;
+      const d = Math.floor(diff/86400000), h = Math.floor(diff%86400000/3600000), m = Math.floor(diff%3600000/60000), s = Math.floor(diff%60000/1000);
+      countdown.textContent = `Countdown: ${d}d ${h}h ${m}m ${s}s`;
+    }, 1000);
+
+    // Fade-in on scroll
+    const obs = new IntersectionObserver((entries)=>entries.forEach(e=>e.isIntersecting&&e.target.classList.add('visible')), {threshold:.1});
+    document.querySelectorAll('.section').forEach(el=>obs.observe(el));
+  </script>
+  <script>
+   (function() {
+      const btn = document.querySelector('.hamburger');
+      const nav = document.getElementById('primary-nav');
+      if (!btn || !nav) return;
+
+      function closeMenu() {
+        btn.classList.remove('open');
+        nav.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+
+      btn.addEventListener('click', (e) => {
+        const isOpen = btn.classList.toggle('open');
+        nav.classList.toggle('open', isOpen);
+        btn.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      // Close when clicking a nav link
+      nav.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => closeMenu());
+      });
+
+      // Close when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!nav.contains(e.target) && !btn.contains(e.target)) {
+          closeMenu();
+        }
+      });
+
+      // Close on escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMenu();
+      });
+    })();
+  </script>
+  <script>
+   // Reveal vertical timeline items on scroll
+    (function() {
+      const items = document.querySelectorAll('.vtimeline-item');
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('seen'); });
+      }, { threshold: 0.15 });
+      items.forEach(i => io.observe(i));
+    })();
+  </script>
+  <script>
+   (function() {
+    const items = document.querySelectorAll('.timeline-one .item');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('seen'); });
+    }, { threshold: 0.15 });
+    items.forEach(i => io.observe(i));
+  })();
+  </script>
+ </body>
+</html>
